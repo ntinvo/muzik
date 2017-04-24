@@ -74,7 +74,21 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
     }),
-    new FaviconsWebpackPlugin('./src/favicon.ico'),
+    // new FaviconsWebpackPlugin({
+    //   logo: './src/favicon.ico',
+    //   icons: {
+    //   android: false,
+    //   appleIcon: false,
+    //   appleStartup: false,
+    //   coast: false,
+    //   favicons: true,
+    //   firefox: false,
+    //   opengraph: false,
+    //   twitter: false,
+    //   yandex: false,
+    //   windows: false
+    // }
+    // }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     })
