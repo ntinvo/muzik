@@ -1,4 +1,10 @@
+/*@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";*/
+
 body {
     background: #0147A7;
     color: #fff;
+}
+
+p {
+    font-size: 50px;
 }
