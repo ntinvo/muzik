@@ -4,14 +4,14 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <input  type="text" placeholder="search for tracks or albums,..." class="form-control" #newquery
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+            <input  type="text" placeholder="search for songs/playlists..." class="form-control" #newquery
             [value]="query"
             (keydown.enter)="submit(newquery.value)">
         </div>
     </div>
     <br>
     <div class="row">
-        <button class="btn btn-primary" (click)="submit(newquery.value)">Let's roll!</button>
+        <button class="btn btn-primary" (click)="submit(newquery.value)">search</button>
     </div>
 </div>

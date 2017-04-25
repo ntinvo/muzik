@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     }
 
     makePlaylistsRequest(query: string): void {
-        this.http.request('http://localhost:3000/playlists/ba+cham' + query)
+        this.http.request('http://localhost:3000/playlists/' + query)
                  .subscribe((res: Response) => {
             this.playlists = res.text();
         });
