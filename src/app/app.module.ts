@@ -1,30 +1,37 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { SongComponent } from './components/song/song.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
+import { HttpModule } from '@angular/http';
+import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF } from '@angular/common';
 
 const routes : Routes = [
-    { path: '', redirectTo: 'search', pathMatch: 'full'},
-    { path: 'search', component: HomeComponent},
+    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'home', component: HomeComponent},
     { path: 'tracks/:id', component: SongComponent},
     { path: 'albums/:id', component: PlaylistComponent},
-    { path: 'contactus', redirectTo: 'contact'},
+    { path: 'search', redirectTo: 'home'},
 ];
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    RouterModule.forRoot(routes)  // Added routes here
   ],
   declarations: [
     AppComponent,
     HomeComponent,
     SongComponent,
-    PlaylistComponent,
-
+    PlaylistComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  providers: [
+      { provide: APP_BASE_HREF, useValue: '/' },
+      { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ]
 })
 export class AppModule { }
