@@ -1,3 +1,9 @@
-<p>
-  song works!
-</p>
+<div *ngIf="song" class="container" style="text-align: center;">
+    <h2>{{ song[0].title }}</h2>
+    <h3>{{ song[0].artist }}</h3>
+    <p><audio controls autoplay src="{{ song[0].link }}"></audio></p>
+    <p><button (click)="back()" class="btn btn-primary">Back</button></p>
+    <div class="row">
+        <pre class="lyric">{{ song[0].lyric }}</pre>
+    <div>
+</div>
