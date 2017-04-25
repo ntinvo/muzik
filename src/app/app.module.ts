@@ -11,8 +11,8 @@ import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF } from '@angular/
 const routes : Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent},
-    { path: 'tracks/:id', component: SongComponent},
-    { path: 'albums/:id', component: PlaylistComponent},
+    { path: 'song/:id', component: SongComponent},
+    { path: 'playlist/:id', component: PlaylistComponent},
     { path: 'search', redirectTo: 'home'},
 ];
 

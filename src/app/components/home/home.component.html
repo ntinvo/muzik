@@ -32,7 +32,6 @@
             </div> -->
             <div *ngIf="songs.length">
                 <div class="row">
-
                     <div class="container">
                         <table class="table table-hover">
                             <thead>
@@ -43,22 +42,11 @@
                             </thead>
                             <tbody *ngFor="let song of songs">
                                 <tr>
-                                    <td>{{ song.title }}</td>
+                                    <td><a [routerLink]="['/song', song.link ]">{{ song.title }}</a></td>
                                     <td>{{ song.artist }}</td>
                                 </tr>
                             </tbody>
                         </table>
-
-                        <!-- <img src="{{ track.album.images[1].url }}" class="img-thumbnail">
-                        <div class="caption">
-                            <h3><a [routerLink]="['/artists', track.artists[0].id]">{{ track.artists[0].name }}</a></h3>
-                            <h5><a [routerLink]="['/tracks', track.id]">{{ track.name }}</a></h5>
-                            <h5><a [routerLink]="['/albums', track.album.id]">{{ track.album.name }}</a></h5>
-                        </div> -->
-
-
-                        <!-- {{ song.link }} -->
-
                     </div>
                 </div>
             </div>
