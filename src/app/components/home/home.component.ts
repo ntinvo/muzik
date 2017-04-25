@@ -11,22 +11,28 @@ export class HomeComponent implements OnInit {
     query: string;
     songs: Object;
     playlists: Object;
+    songsActive: boolean;
+    playlistsActive: boolean;
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => { this.query = params['query'] || ''; });
+        this.songsActive = true;
+        this.playlistsActive = false;
     }
 
     ngOnInit() {
-        // this.query = this.query.split('+').join(' ');   // reverse the value of the input field
-        // this.makeSongsRequest(this.query);
+        // this.songsActive = true;
+        // this.playlistsActive = false;
     }
 
     submit(query: string): void {
         if(query != '') {
             var tmp = query.split(' ').join('+');
-
-            this.router.navigate(['search'], { queryParams: { query: query } })
-                .then(_ => this.makeSongsRequest(tmp) );
+            if(this.songsActive) {
+                this.router.navigate(['search'], { queryParams: { query: query }}).then(_ => this.makeSongsRequest(tmp) );
+            } else {
+                this.router.navigate(['search'], { queryParams: { query: query }}).then(_ => this.makePlaylistsRequest(tmp) );
+            }
         }
         this.query = query;
     }
@@ -43,6 +49,21 @@ export class HomeComponent implements OnInit {
         this.http.request('http://localhost:3000/playlists/' + query)
                  .subscribe((res: Response) => {
             this.playlists = res.text();
+            console.log(this.playlists);
         });
+    }
+
+    songsPillClicked(): boolean {
+        this.songsActive = true;
+        this.playlistsActive = false;
+        console.log('songs clicked');
+        return false;
+    }
+
+    playlistsPillClicked(): boolean {
+        this.songsActive = false;
+        this.playlistsActive = true;
+        console.log('playlists clicked');
+        return false;
     }
 }
