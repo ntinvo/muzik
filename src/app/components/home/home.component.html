@@ -21,4 +21,47 @@
     <div class="row">
         <button class="btn btn-primary" (click)="submit(newquery.value)">search</button>
     </div>
+    <br>
+    <div class="row">
+        <div *ngIf="songs || playlists" style="text-align: center;">
+            <br>
+            <!-- <div *ngIf="!results.length">
+                <div class="alert alert-warning alert-dismissable col-md-4 offset-md-4">
+                    No tracks were found with the term '{{ query }}'.<br><strong>Please try again!</strong>
+                </div>
+            </div> -->
+            <div *ngIf="songs.length">
+                <div class="row">
+
+                    <div class="container">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Artist(s)</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let song of songs">
+                                <tr>
+                                    <td>{{ song.title }}</td>
+                                    <td>{{ song.artist }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- <img src="{{ track.album.images[1].url }}" class="img-thumbnail">
+                        <div class="caption">
+                            <h3><a [routerLink]="['/artists', track.artists[0].id]">{{ track.artists[0].name }}</a></h3>
+                            <h5><a [routerLink]="['/tracks', track.id]">{{ track.name }}</a></h5>
+                            <h5><a [routerLink]="['/albums', track.album.id]">{{ track.album.name }}</a></h5>
+                        </div> -->
+
+
+                        <!-- {{ song.link }} -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

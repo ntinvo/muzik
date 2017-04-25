@@ -9,8 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
     query: string;
-    songs: Object;
-    playlists: Object;
+    songs: [Object];
+    playlists: [Object];
     songsActive: boolean;
     playlistsActive: boolean;
 
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     makeSongsRequest(query: string): void {
         this.http.request('http://localhost:3000/songs/' + query)
                  .subscribe((res: Response) => {
-            this.songs = res.text();
+            this.songs = JSON.parse(res.text());
             console.log(this.songs);
         });
     }
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     makePlaylistsRequest(query: string): void {
         this.http.request('http://localhost:3000/playlists/' + query)
                  .subscribe((res: Response) => {
-            this.playlists = res.text();
+            this.playlists = JSON.parse(res.text());
             console.log(this.playlists);
         });
     }
