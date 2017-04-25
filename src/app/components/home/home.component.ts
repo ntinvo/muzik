@@ -56,14 +56,12 @@ export class HomeComponent implements OnInit {
     songsPillClicked(): boolean {
         this.songsActive = true;
         this.playlistsActive = false;
-        console.log('songs clicked');
         return false;
     }
 
     playlistsPillClicked(): boolean {
         this.songsActive = false;
         this.playlistsActive = true;
-        console.log('playlists clicked');
         return false;
     }
 }
