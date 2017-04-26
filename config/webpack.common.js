@@ -54,7 +54,12 @@ module.exports = {
         include: helpers.root('src', 'app'),
         loader: 'raw-loader'
       }
-    ]
+    ],
+    loaders: [{
+			test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+			loaders: 'file-loader?name=fonts/[name].[ext]'
+
+	}]
   },
 
   plugins: [

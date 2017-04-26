@@ -1,4 +1,11 @@
+@font-face {
+    font-family: 'Sketch_Block';
+    src: url('../fonts/sketch-block/Sketch_Block.ttf');
+}
+
 body {
+    font-family: 'Sketch_Block';
+    font-weight: 600;
     background: white;
     color: lightblue;
     p {
@@ -38,7 +45,22 @@ a:link {
     display: flex;
     justify-content: center;
 }
-
-// .nav-pills > li > a {
-//     background: #1abc9c;
+// .m {
+//     color: #c0392b;
 // }
+// .u {
+//     color: #2ecc71;
+// }
+// .z {
+//     color: #f1c40f;
+// }
+// .i {
+//     color: #3498db;
+// }
+// .k {
+//     color: #9b59b6;
+// }
+h1.main-brand {
+    font-size: 75px;
+    text-shadow: 3px 3px 5px;
+}
