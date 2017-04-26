@@ -22,10 +22,15 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         if(this.songsActive && this.query != '') {
-            this.makeSongsRequest(this.query);
+            console.log(this.songs);
+            // if(this.songs) {
+                this.makeSongsRequest(this.query);
+
         }
         if(this.playlistsActive && this.query != '') {
-            this.makePlaylistsRequest(this.query);
+            // if(this.playlists) {
+                this.makePlaylistsRequest(this.query);
+
         }
     }
 
@@ -42,14 +47,14 @@ export class HomeComponent implements OnInit {
     }
 
     makeSongsRequest(query: string): void {
-        this.http.request('http://localhost:3000/songs/' + query)
+        this.http.request('http://localhost:3000/nct/songs/' + query)
                  .subscribe((res: Response) => {
             this.songs = JSON.parse(res.text());
         });
     }
 
     makePlaylistsRequest(query: string): void {
-        this.http.request('http://localhost:3000/playlists/' + query)
+        this.http.request('http://localhost:3000/nct/playlists/' + query)
                  .subscribe((res: Response) => {
             this.playlists = JSON.parse(res.text());
         });
