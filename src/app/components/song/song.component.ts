@@ -29,10 +29,12 @@ export class SongComponent implements OnInit {
         // url = this.encodeURL(url);
         url = encodeURIComponent(url);
         console.log(url);
-        this.http.request('http://localhost:3000/nct/getSong/' + url)
+        this.http.request('http://localhost:3000/csn/getSong/' + url)
                  .subscribe((res: Response) => {
             this.song = JSON.parse(res.text());
-            console.log(this.song[0].lyric);
+            if(this.song[0].artistImgUrl == 'http://chiasenhac.vn/images/player_csn.png') {
+                this.song[0].artistImgUrl = 'https://raw.githubusercontent.com/tinnvo/tinnvo.github.io/master/assets/singer.png';
+            }
         });
     }
 }
