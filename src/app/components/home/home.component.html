@@ -33,12 +33,17 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th>Type</th>
                                     <th>Title</th>
                                     <th>Artist(s)</th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let song of songs">
                                 <tr>
+                                    <td>
+                                        <img *ngIf="!song.isVideo" src="../../../assets/images/audio.png" alt="Audio">
+                                        <img *ngIf="song.isVideo" src="../../../assets/images/video.png" alt="Video">
+                                    </td>
                                     <td><a [routerLink]="['/song', song.link ]">{{ song.title }}</a></td>
                                     <td>{{ song.artist }}</td>
                                 </tr>
