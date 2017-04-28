@@ -26,14 +26,15 @@ export class HomeComponent implements OnInit {
         if(this.songsActive && this.query != '') {
             // console.log(this.songs);
             // if(this.songs) {
-                this.test(this.query);
+            var tmp = this.query.split(' ').join('+');
+                this.test(tmp);
 
         }
-        if(this.playlistsActive && this.query != '') {
-            // if(this.playlists) {
-                this.makePlaylistsRequest(this.query);
-
-        }
+        // if(this.playlistsActive && this.query != '') {
+        //     // if(this.playlists) {
+        //         this.makePlaylistsRequest(this.query);
+        //
+        // }
     }
 
     submit(query: string): void {
@@ -49,22 +50,27 @@ export class HomeComponent implements OnInit {
     }
 
     test(query: string): void {
-        this.songs = this.songsPlaylists.searchTrack(query);
-        console.log(this.songs);
+        // this.songs = this.songsPlaylists.searchTrack(query);
+        this.songsPlaylists.searchTrack(query).then((vals:any) => this.songs = vals);
+        // temp.then(function(val: any) {
+        //     this.song = val;
+        // })
     }
+
+
     //
     // renderResults(res: any): void {
     //     this.songs = res;
     // }
 
 
-    makeSongsRequest(query: string): void {
-        this.songs = this.songsPlaylists.searchTrack(query);
-        // this.http.request('http://localhost:3000/csn/songs/' + query)
-        //          .subscribe((res: Response) => {
-        //     this.songs = JSON.parse(res.text());
-        // });
-    }
+    // makeSongsRequest(query: string): void {
+    //     this.songs = this.songsPlaylists.searchTrack(query);
+    //     // this.http.request('http://localhost:3000/csn/songs/' + query)
+    //     //          .subscribe((res: Response) => {
+    //     //     this.songs = JSON.parse(res.text());
+    //     // });
+    // }
 
     makePlaylistsRequest(query: string): void {
         this.http.request('http://localhost:3000/csn/playlists/' + query)
