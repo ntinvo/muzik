@@ -1,7 +1,8 @@
 <div *ngIf="song" class="container" style="text-align: center;">
-    <h2>{{ song[0].title }}</h2>
-    <h3>{{ song[0].artist }}</h3>
-
+    <div class="songDisplay">
+        <h2>{{ song[0].title }}</h2>
+        <h3>{{ song[0].artist }}</h3>
+    </div>
 
     <div *ngIf="!song[0].isVideo">
         <img src="{{ song[0].artistImgUrl }}" alt="Artist Image">

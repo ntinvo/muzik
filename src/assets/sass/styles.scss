@@ -3,6 +3,21 @@
     src: url('../fonts/sketch-block/Sketch_Block.ttf');
 }
 
+@font-face {
+    font-family: 'Anson-Regular-Webfont';
+    src: url('../fonts/anson-font/Anson-Regular-Webfont.ttf');
+}
+
+@font-face {
+    font-family: 'Nevis';
+    src: url('../fonts/nevis/Nevis.ttf');
+}
+
+@font-face {
+    font-family: 'Futura_Book';
+    src: url('../fonts/futura/Futura_Book.ttf');
+}
+
 body {
     font-family: 'Sketch_Block';
     font-weight: 600;
@@ -40,6 +55,7 @@ a:link {
 }
 
 .lyric {
+    font-family: 'Futura_Book';
     font-size: 20px;
     color: black;
 }
@@ -70,4 +86,16 @@ video {
 h1.main-brand {
     font-size: 75px;
     text-shadow: 3px 3px 5px;
+}
+
+.songDisplay {
+    h2 {
+        font-family: 'Nevis';
+        color: #27ae60;
+    }
+
+    h3 {
+        font-family: 'Anson-Regular-Webfont';
+        color: #d35400;
+    }
 }
