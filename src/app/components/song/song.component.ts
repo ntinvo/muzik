@@ -28,7 +28,7 @@ export class SongComponent implements OnInit {
     renderSong(url: any): void {
         // url = this.encodeURL(url);
         url = encodeURIComponent(url);
-        console.log(url);
+        // console.log(url);
         this.http.request('http://localhost:3000/csn/getSong/' + url)
                  .subscribe((res: Response) => {
             this.song = JSON.parse(res.text());

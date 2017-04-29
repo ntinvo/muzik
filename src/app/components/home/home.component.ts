@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SongsPlaylistsService } from '../../services/songs-playlists.service';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
+    // providers: [SongsPlaylistsService]
 })
 export class HomeComponent implements OnInit {
     query: string;
-    songs: [Object];
+    songs: Object;
     playlists: [Object];
     songsActive: boolean;
     playlistsActive: boolean;
 
-    constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
+    constructor(private songsPlaylists: SongsPlaylistsService, private http: Http, private router: Router, private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => { this.query = params['query'] || ''; });
         this.songsActive = true;
         this.playlistsActive = false;
@@ -24,7 +26,7 @@ export class HomeComponent implements OnInit {
         if(this.songsActive && this.query != '') {
             // console.log(this.songs);
             // if(this.songs) {
-                this.makeSongsRequest(this.query);
+                this.test(this.query);
 
         }
         if(this.playlistsActive && this.query != '') {
@@ -38,7 +40,7 @@ export class HomeComponent implements OnInit {
         if(query != '') {
             var tmp = query.split(' ').join('+');
             if(this.songsActive) {
-                this.router.navigate(['search'], { queryParams: { query: query }}).then(_ => this.makeSongsRequest(tmp) );
+                this.router.navigate(['search'], { queryParams: { query: query }}).then(_ => this.test(tmp) );
             } else {
                 this.router.navigate(['search'], { queryParams: { query: query }}).then(_ => this.makePlaylistsRequest(tmp) );
             }
@@ -46,11 +48,22 @@ export class HomeComponent implements OnInit {
         this.query = query;
     }
 
+    test(query: string): void {
+        this.songs = this.songsPlaylists.searchTrack(query);
+        console.log(this.songs);
+    }
+    //
+    // renderResults(res: any): void {
+    //     this.songs = res;
+    // }
+
+
     makeSongsRequest(query: string): void {
-        this.http.request('http://localhost:3000/csn/songs/' + query)
-                 .subscribe((res: Response) => {
-            this.songs = JSON.parse(res.text());
-        });
+        this.songs = this.songsPlaylists.searchTrack(query);
+        // this.http.request('http://localhost:3000/csn/songs/' + query)
+        //          .subscribe((res: Response) => {
+        //     this.songs = JSON.parse(res.text());
+        // });
     }
 
     makePlaylistsRequest(query: string): void {

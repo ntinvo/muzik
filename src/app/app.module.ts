@@ -7,6 +7,7 @@ import { SongComponent } from './components/song/song.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { HttpModule } from '@angular/http';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF } from '@angular/common';
+import { SongsPlaylistsService } from './services/songs-playlists.service';
 
 const routes : Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -30,6 +31,7 @@ const routes : Routes = [
   ],
   bootstrap: [ AppComponent ],
   providers: [
+      SongsPlaylistsService,
       { provide: APP_BASE_HREF, useValue: '/' },
       { provide: LocationStrategy, useClass: HashLocationStrategy }
   ]
