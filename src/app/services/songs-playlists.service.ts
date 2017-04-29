@@ -8,25 +8,15 @@ export class SongsPlaylistsService {
     results: Object;
     query: string;
 
-    constructor(private http: Http) {
-
-    }
-
-    // searchTrack(query: string): Observable<any[]> {
-    //     console.log(this.results);
-    //     if(!this.results) {
-    //         console.log('search');
-    //         this.results = this.http.request('http://localhost:3000/csn/songs/' + query).map((res: any) => res.json());
-    //     } else
-    //     return this.results;
-    // }
+    constructor(private http: Http) { }
 
     searchTrack(query: string): any {
-        if(!this.results) {
-            return this.http.get('http://localhost:3000/nct/songs/' + query).map((response) => {
-                     this.results = response.json();
-                     return this.results;
+        if(!this.results || this.query !== query) {
+            this.results = this.http.get('http://localhost:3000/nct/songs/' + query).map((response) => {
+                return response.json();
             }).toPromise();
+            this.query = query;
+            return this.results;
         }
         return this.results;
     }

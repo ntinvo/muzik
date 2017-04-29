@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
             // console.log(this.songs);
             // if(this.songs) {
             var tmp = this.query.split(' ').join('+');
-                this.test(tmp);
+            this.test(tmp);
 
         }
         // if(this.playlistsActive && this.query != '') {
@@ -51,10 +51,9 @@ export class HomeComponent implements OnInit {
 
     test(query: string): void {
         // this.songs = this.songsPlaylists.searchTrack(query);
-        this.songsPlaylists.searchTrack(query).then((vals:any) => this.songs = vals);
-        // temp.then(function(val: any) {
-        //     this.song = val;
-        // })
+        var temp = this.songsPlaylists.searchTrack(query);
+        temp.then((vals:any) => this.songs = vals);
+        
     }
 
 
