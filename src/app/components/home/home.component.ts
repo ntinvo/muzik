@@ -46,10 +46,7 @@ export class HomeComponent implements OnInit {
     }
 
     makeSongsRequest(query: string): void {
-        // this.songs = this.songsPlaylists.searchTrack(query);
-        var temp = this.songsPlaylists.searchSongs(query);
-        temp.then((vals:any) => this.songs = vals);
-
+        this.songsPlaylists.searchSongs(query).then((vals:any) => this.songs = vals);
     }
 
     makePlaylistsRequest(query: string): void {

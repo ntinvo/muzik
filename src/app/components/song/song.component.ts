@@ -27,16 +27,15 @@ export class SongComponent implements OnInit {
     }
 
     renderSong(url: any): void {
-        // url = this.encodeURL(url);
         url = encodeURIComponent(url);
         this.songsPlaylists.getSong(url).then((val: any) => this.song = val) ;
         // console.log(url);
         // this.http.request('https://muzik-scraper.herokuapp.com/nct/getSong/' + url)
         //          .subscribe((res: Response) => {
         //     this.song = JSON.parse(res.text());
-            // if(this.song[0].artistImgUrl == 'http://chiasenhac.vn/images/player_csn.png') {
-            //     this.song[0].artistImgUrl = 'https://raw.githubusercontent.com/tinnvo/tinnvo.github.io/master/assets/singer.png';
-            // }
+        // if(this.song[0].artistImgUrl == 'http://chiasenhac.vn/images/player_csn.png') {
+        //     this.song[0].artistImgUrl = 'https://raw.githubusercontent.com/tinnvo/tinnvo.github.io/master/assets/singer.png';
+        // }
         // });
     }
 }
