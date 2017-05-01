@@ -7,7 +7,6 @@ import { SongsPlaylistsService } from '../../services/songs-playlists.service';
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
-    // providers: [SongsPlaylistsService]
 })
 export class HomeComponent implements OnInit {
     query: string;
@@ -24,11 +23,8 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         if(this.songsActive && this.query != '') {
-            // console.log(this.songs);
-            // if(this.songs) {
             var tmp = this.query.split(' ').join('+');
-            this.test(tmp);
-
+            this.makeSongsRequest(tmp);
         }
         // if(this.playlistsActive && this.query != '') {
         //     // if(this.playlists) {
@@ -41,7 +37,7 @@ export class HomeComponent implements OnInit {
         if(query != '') {
             var tmp = query.split(' ').join('+');
             if(this.songsActive) {
-                this.router.navigate(['search'], { queryParams: { query: query }}).then(_ => this.test(tmp) );
+                this.router.navigate(['search'], { queryParams: { query: query }}).then(_ => this.makeSongsRequest(tmp) );
             } else {
                 this.router.navigate(['search'], { queryParams: { query: query }}).then(_ => this.makePlaylistsRequest(tmp) );
             }
@@ -49,27 +45,12 @@ export class HomeComponent implements OnInit {
         this.query = query;
     }
 
-    test(query: string): void {
+    makeSongsRequest(query: string): void {
         // this.songs = this.songsPlaylists.searchTrack(query);
-        var temp = this.songsPlaylists.searchTrack(query);
+        var temp = this.songsPlaylists.searchSongs(query);
         temp.then((vals:any) => this.songs = vals);
-        
+
     }
-
-
-    //
-    // renderResults(res: any): void {
-    //     this.songs = res;
-    // }
-
-
-    // makeSongsRequest(query: string): void {
-    //     this.songs = this.songsPlaylists.searchTrack(query);
-    //     // this.http.request('http://localhost:3000/csn/songs/' + query)
-    //     //          .subscribe((res: Response) => {
-    //     //     this.songs = JSON.parse(res.text());
-    //     // });
-    // }
 
     makePlaylistsRequest(query: string): void {
         this.http.request('http://localhost:3000/csn/playlists/' + query)

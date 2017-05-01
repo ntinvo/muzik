@@ -2,6 +2,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { SongsPlaylistsService } from '../../services/songs-playlists.service';
 
 @Component({
     selector: 'app-song',
@@ -13,7 +14,7 @@ export class SongComponent implements OnInit {
     link: string;
     song: Object;
 
-    constructor(private http: Http, private route: ActivatedRoute, private location: Location) {
+    constructor(private songsPlaylists: SongsPlaylistsService, private http: Http, private route: ActivatedRoute, private location: Location) {
         route.params.subscribe(params => { this.link = params['id']; });
     }
 
@@ -28,13 +29,14 @@ export class SongComponent implements OnInit {
     renderSong(url: any): void {
         // url = this.encodeURL(url);
         url = encodeURIComponent(url);
+        this.songsPlaylists.getSong(url).then((val: any) => this.song = val) ;
         // console.log(url);
-        this.http.request('http://localhost:3000/nct/getSong/' + url)
-                 .subscribe((res: Response) => {
-            this.song = JSON.parse(res.text());
+        // this.http.request('https://muzik-scraper.herokuapp.com/nct/getSong/' + url)
+        //          .subscribe((res: Response) => {
+        //     this.song = JSON.parse(res.text());
             // if(this.song[0].artistImgUrl == 'http://chiasenhac.vn/images/player_csn.png') {
             //     this.song[0].artistImgUrl = 'https://raw.githubusercontent.com/tinnvo/tinnvo.github.io/master/assets/singer.png';
             // }
-        });
+        // });
     }
 }

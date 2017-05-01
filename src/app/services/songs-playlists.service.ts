@@ -10,14 +10,22 @@ export class SongsPlaylistsService {
 
     constructor(private http: Http) { }
 
-    searchTrack(query: string): any {
+    searchSongs(query: string): any {
         if(!this.results || this.query !== query) {
-            this.results = this.http.get('http://localhost:3000/nct/songs/' + query).map((response) => {
+            this.results = this.http.get('https://muzik-scraper.herokuapp.com/nct/songs/' + query).map((response) => {
+            // this.results = this.http.get('http://localhost:3000/nct/songs/' + query).map((response) => {
                 return response.json();
             }).toPromise();
             this.query = query;
             return this.results;
         }
         return this.results;
+    }
+
+    getSong(url: string): any {
+        return this.http.get('https://muzik-scraper.herokuapp.com/nct/getSong/' + url).map((response) => {
+        // return this.http.get('http://localhost:3000/nct/getSong/' + url).map((response) => {
+            return response.json();
+        }).toPromise();
     }
 }
