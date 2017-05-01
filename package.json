@@ -1,8 +1,8 @@
 {
-  "name": "angular-io-example",
-  "version": "1.0.0",
+  "name": "muzik",
+  "version": "0.0.1",
   "private": true,
-  "description": "Example project from an angular.io guide.",
+  "description": "Web app for searching songs",
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js --inline --progress --port 8080",
     "test": "karma start karma.webpack.conf.js",
